@@ -48,23 +48,17 @@ class list{
 		l = temp;
 		return *this;
 	}
-	list<T>& dodaj_iza(T a){
+	list<T>& insert_behind(T a){
 		elements[size++] = a;
 		return *this;
 	}
-	list<T>& dodaj_ispred(T a){
+	list<T>& insert_front(T a){
 		size++;
 		for(int i = size-1; i > 0; --i){
 			elements[i] = elements[i-1];
 		}
 		elements[0] = a;
 		return *this;
-	}
-	void ispisi(){
-		for(int i = 0; i < size; ++i){
-			std::cout << elements[i] << " ";
-		}
-		std::cout << std::endl;
 	}
 	T at(int i){
 		if(i < 0 || i > size - 1)
