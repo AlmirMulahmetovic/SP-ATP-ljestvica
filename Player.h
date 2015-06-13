@@ -17,7 +17,7 @@ class player
         void Set_nationality(std::string val);
         const int& Get_points() const;
         void Set_points(int val);
-        void Set_player(std::string first_name,std::string last_name,int points);
+        void Set_player(std::string first_name,std::string last_name,std::string nationality ,int points);
 
         friend std::ostream& operator<<(std::ostream& out,const player& val )
         {
@@ -53,5 +53,5 @@ class player
         std::string _nationality;
         int _points;
 };
-
+//dodao ALMIR
 #endif // PLAYER_H

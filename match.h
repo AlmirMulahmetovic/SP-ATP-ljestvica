@@ -1,6 +1,6 @@
 #ifndef MATCH_H
 #define MATCH_H
-
+#include <string>
 #include "Player.h"
 
 class Match
@@ -8,7 +8,7 @@ class Match
     public:
         Match()=default;
 		Match(const Match& match);
-		
+	player getWiner();	
         const player& Get_first_player() const;
         void Set_first_player(player val);
         const player& Get_second_player() const;

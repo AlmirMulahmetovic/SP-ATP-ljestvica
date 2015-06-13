@@ -56,11 +56,12 @@ const std::string& player::Get_last_name()const
      return _last_name;
 }
 
-void player::Set_player(std::string first_name,std::string last_name,int points)
+void player::Set_player(std::string first_name,std::string last_name,std::string nationality ,int points)
 {
     _first_name=first_name;
     _last_name=last_name;
     _points=points;
+    _nationality=nationality;
 
 }
 
