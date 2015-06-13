@@ -1,41 +1,56 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include<string>
+#include<iostream>
+
 class player
 {
     public:
         player();
-        string Get_first_name() { return _first_name; }
-        void Set_first_name(string val) { _first_name = val; }
-        string Get_last_name() { return _last_name; }
-        void Set_last_name(string val) { _last_name = val; }
-        string Get_nationality() { return _nationality; }
-        void Set_nationality(string val) { _nationality = val; }
-        int Get_points() { return _points; }
-        void Set_points(int val) { _points = val; }
-        void Set_player(string first_name,string last_name,int points);
-        friend ostream& operator<<(ostream& out,const player& val )
+        player(const player& Player);
+        const std::string& Get_first_name() const;
+        void Set_first_name(std::string val);
+        const std::string& Get_last_name() const;
+        void Set_last_name(std::string val);
+        const std::string& Get_nationality() const;
+        void Set_nationality(std::string val);
+        const int& Get_points() const;
+        void Set_points(int val);
+        void Set_player(std::string first_name,std::string last_name,int points);
+
+        friend std::ostream& operator<<(std::ostream& out,const player& val )
         {
             out<<val._last_name<<","<<val._first_name<<"("<<val._nationality<<") Points: "<<val._points;
+            return out;
 
         }
-        friend istream& operator<<(istream& in,const player& val )
+        friend std::istream& operator<<(std::istream& in,player& val )
         {
-            cout<<"Insert Player\n";
-            cout<<"First name:";
+            std::cout<<"Insert Player\n";
+            std::cout<<"First name:";
             in>>val._first_name;
-            cout<<"Last name:";
-            in>>val._last_name
-            cout<<"Nationality:";
+            std::cout<<"Last name:";
+            in>>val._last_name;
+            std::cout<<"Nationality:";
             in>>val._nationality;
-            cout<<"Points:"
+            std::cout<<"Points:";
             in>>val._points;
+            return in;
         }
-    protected:
+
+
+        bool operator==(const player& Player) const;
+        bool operator!=(const player& Player) const;
+        bool operator<(const player& Player) const;
+        bool operator>(const player& Player) const;
+        bool operator<=(const player& Player) const;
+        bool operator>=(const player& Player) const;
+
     private:
-        string _first_name;
-        string _last_name;
-        string _nationality;
+        std::string _first_name;
+        std::string _last_name;
+        std::string _nationality;
         int _points;
 };
 
