@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "match.h"
 #include <iostream>
+#include "master250.hxx"
 #include "master500.hxx"
 #include "master1000.hxx"
 #include "grand_slam.hxx"
@@ -13,9 +14,11 @@ class ATP{
 private: 
   
   list<player> players;
+  list<master500> master_250;
   list<master500> master_500;
   list<master100> master_1000;
-public:  
+public:
+  void enter250();
   void enter500();
   void enter1000();
   void enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,master500 &tournament);
@@ -48,6 +51,43 @@ string name;
 	players.addToEnd(winner);
 	}
 }*/
+
+ void ATP::enter250()
+ {
+		  string name;
+		  cout<<"Please enter tournament name."<<endl;
+		  cin>>name;
+		  master250 tournament(name);
+		  list<player> winners16(16);
+		  string name1,lastname1,name2,lastname2,result;
+		  player first,second;
+		  enter_round1(16,5,winners16,tournament);
+		  list<player> winners8(8);
+		  enter_round(8,20,winners16,winners8,tournament);
+		  list<player> winners4(4);
+		  enter_round(4,45,winners8,winners4,tournament);
+		  list<player> winners2(2);
+		  enter_round(2,90,winners4,winners2,tournament);
+		  list<player> winners1(1);
+		  enter_round(1,150,winners2,winners1,tournament);
+		  player winner=winners1[0];
+		  bool found=false;	
+		  for(int i=0;i<players.listSize();i++)
+		  {
+				if(winner==players[i])
+				{
+					players[i].increase_points(250);
+					found=true;
+					break;
+				}
+		  }
+		if(!found)
+		{
+				winner.increase_points(250);
+				players.addToEnd(winner);
+		}
+} 
+
   void ATP::enter500(){
   string name;
   cout<<"Please enter tournament name."<<endl;
