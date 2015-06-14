@@ -1,6 +1,6 @@
 #ifndef _LJESTVICA_H
 #define _LJESTVICA_H
-#include "list.hxx"
+#include "list1.hxx"
 #include "Player.h"
 #include "match.h"
 #include <iostream>
@@ -153,8 +153,6 @@ void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,
 		}
   }
 }
-hamo pipa bosna dragan drago srbia 6:1,6:2
-mujo mujic francuska hamo hamic engleska 2:6,2:6
-hamo pipa bosna hamo hamic engleska 6:1,6:1
+
 
 #endif

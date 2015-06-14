@@ -94,6 +94,9 @@ bool player::operator>=(const player& Player) const
     return _points>=Player._points;
 };
 
-
+void player::increase_points(int a)
+{
+      _points=_points+a;
+}
 
 
