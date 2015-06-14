@@ -5,6 +5,7 @@
 #include "match.h"
 #include <iostream>
 #include "master500.hxx"
+#include "grand_slam.hxx"
 using namespace std;
 
 class ATP{
