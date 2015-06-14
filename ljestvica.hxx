@@ -14,6 +14,7 @@ private:
   
   list<player> players;
   list<master500> master_500;
+  list<master100> master_1000;
 public:  
   void enter500();
   void enter1000();
