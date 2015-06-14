@@ -5,6 +5,7 @@
 #include "match.h"
 #include <iostream>
 #include "master500.hxx"
+#include "master1000.hxx"
 #include "grand_slam.hxx"
 using namespace std;
 
@@ -15,11 +16,12 @@ private:
   list<master500> master_500;
 public:  
   void enter500();
+  void enter1000();
   void enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,master500 &tournament);
   void enter_round1(int num_of_matches,int points,list<player>& this_winners,master500 &tournament);
   void see_players(){players.print();}
 }; 
-void ATP::enter500(){
+/*void ATP::enter500(){
 string name;
   cout<<"Please enter tournament name."<<endl;
   cin>>name;
@@ -44,8 +46,8 @@ string name;
 	winner.increase_points(500);
 	players.addToEnd(winner);
 	}
-}
-  /*void ATP::enter500(){
+}*/
+  void ATP::enter500(){
   string name;
   cout<<"Please enter tournament name."<<endl;
   cin>>name;
@@ -75,7 +77,41 @@ string name;
 	winner.increase_points(500);
 	players.addToEnd(winner);
 	}
-}*/ ova funkcija je za ovaj turnir prethodna sluzi samo za 
+}
+
+ void ATP::enter1000(){
+  string name;
+  cout<<"Please enter tournament name."<<endl;
+  cin>>name;
+  master1000 tournament(name);
+  string name1,lastname1,name2,lastname2,result;
+  player first,second;
+  list<player> winners32(32);
+  enter_round1(32,25,winners32,tournament);
+  list<player> winners16(16);
+  enter_round(16,45,winners32,winners16,tournament);
+  list<player> winners8(8);
+  enter_round(8,90,winners16,winners8,tournament);
+  list<player> winners4(4);
+  enter_round(4,180,winners8,winners4,tournament);
+  list<player> winners2(2);
+  enter_round(2,360,winners4,winners2,tournament);
+  list<player> winners1(1);
+  enter_round(1,600,winners2,winners1,tournament);
+  player winner=winners1[0];
+  bool found=false;	
+	for(int i=0;i<players.listSize();i++){
+		if(winner==players[i]){
+			players[i].increase_points(1000);
+			found=true;
+			break;
+			}
+		}
+	if(!found){
+	winner.increase_points(1000);
+	players.addToEnd(winner);
+	}
+} 
   
 void ATP::enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,master500 &tournament){
   cout<<"Enter the first match of round"<<endl;
