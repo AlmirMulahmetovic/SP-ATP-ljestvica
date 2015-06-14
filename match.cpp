@@ -1,12 +1,10 @@
 #include "match.h"
 
 using namespace std;
-player Match::getWiner(){
+void Match::calculate_sets(int &sets_first,int &sets_second){
 	int size=_result.size();
 	char first,second; 
 	int i=0;
-	int sets_first=0;
-	int sets_second=0;
 	while(i<size){
 		first=_result[i];
 		i=i+2;
@@ -17,7 +15,21 @@ player Match::getWiner(){
 		else
 			sets_second++;
 	}
+}
+player Match::getWinner(){
+	int sets_first=0;
+	int sets_second=0;
+	calculate_sets(sets_first,sets_second);
 	if(sets_first>sets_second)
+		return Get_first_player();
+	else 
+		return Get_second_player();
+	}
+player Match::getLoser(){
+int sets_first=0;
+	int sets_second=0;
+	calculate_sets(sets_first,sets_second);
+	if(sets_first<sets_second)
 		return Get_first_player();
 	else 
 		return Get_second_player();
@@ -69,12 +81,4 @@ void Match::Set_Match(player name_first,player name_second,std::string result)
     _second_player=name_second;
     _result=result;
 }
-int main(){
-Match a;
-player b;
-player c;
-b.Set_player("novak","djokovic","serbia",0);
-c.Set_player("rafa","nadal","spain",0);
-a.Set_Match(b,c,"6:3 6:1 3:6 6:3");
-cout<<a.getWiner();
-}
+

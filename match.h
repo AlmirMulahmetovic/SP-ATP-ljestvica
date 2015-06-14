@@ -8,7 +8,9 @@ class Match
     public:
         Match()=default;
 		Match(const Match& match);
-	player getWiner();	
+	void calculate_sets(int &sets_first,int &sets_second);	
+	player getWinner();
+	player getLoser();	
         const player& Get_first_player() const;
         void Set_first_player(player val);
         const player& Get_second_player() const;
