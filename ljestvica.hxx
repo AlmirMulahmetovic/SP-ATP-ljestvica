@@ -23,8 +23,10 @@ public:
   void enter500();
   void enter1000();
   void enter_gslam();
-  void enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,master500 &tournament);
-  void enter_round1(int num_of_matches,int points,list<player>& this_winners,master500 &tournament);
+  template<typename T>
+  void enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,T &tournament);
+  template<typename T>
+  void enter_round1(int num_of_matches,int points,list<player>& this_winners,T &tournament);
   void see_players(){players.print();}
 }; 
 /*void ATP::enter500(){
@@ -190,8 +192,8 @@ void ATP::enter_gslam(){
 		players.addToEnd(winner);
 	}
 }
-  
-void ATP::enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,master500 &tournament){
+template<typename T>
+void ATP::enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,T &tournament){
   cout<<"Enter the first match of round"<<endl;
   string name1,name2,lastname1,lastname2,natonality1,natonality2,result;
   player first,second;
@@ -240,7 +242,8 @@ void ATP::enter_round(int num_of_matches,int points,list<player>& winners,list<p
 	}
   }
 }
-void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,master500 &tournament){
+template<typename T>
+void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,T &tournament){
   cout<<"Enter the first match of round"<<endl;
   string name1,name2,lastname1,lastname2,natonality1,natonality2,result;
   player first,second;  
