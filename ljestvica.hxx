@@ -166,7 +166,7 @@ void ATP::enter_gslam(){
 	string name1, lastname1, name2, lastname2, result;
 	player first, second;
 	enter_round1(64, 10, winners64, tournament);
-	list<player> winners64(64);
+	list<player> winners32(32);
 	enter_round(32, 45, winners64, winners32, tournament);
 	list<player> winners16(16);
 	enter_round(16, 90, winners32, winners16, tournament);
