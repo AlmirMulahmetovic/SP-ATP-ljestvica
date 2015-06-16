@@ -7,7 +7,13 @@ player::player()
      _nationality="";
      _points=0;
 }
-
+player player::operator=(const player& p){
+	_first_name = p._first_name;
+	_last_name = p._last_name;
+	_nationality = p._nationality;
+	_points = p._points;
+	return *this;
+}
 player::player(const player& Player)
 {
     this->_first_name=Player._first_name;

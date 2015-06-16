@@ -8,6 +8,7 @@
 #include "master500.hxx"
 #include "master1000.hxx"
 #include "grand_slam.hxx"
+#include "sort.hxx"
 using namespace std;
 
 class ATP{
@@ -19,6 +20,8 @@ private:
   list<master1000> master_1000;
   list<grand_slam> grandSlam;
 public:
+  template<typename F>
+  void mergeSort(F const&);
   void enter250();
   void enter500();
   void enter1000();
@@ -313,6 +316,9 @@ void ATP::print_tournament(int points, const string& name)
 	}
 }
 
-
+template<typename F>
+void ATP::mergeSort(F const& function){
+	merge_sort(players, players.listSize(), function);
+}
 
 #endif

@@ -10,6 +10,7 @@ class player
 	void increase_points(int a);
         player();
         player(const player& Player);
+        player operator=(const player&);
         const std::string& Get_first_name() const;
         void Set_first_name(std::string val);
         const std::string& Get_last_name() const;
@@ -22,7 +23,7 @@ class player
 
         friend std::ostream& operator<<(std::ostream& out,const player& val )
         {
-            out<<val._last_name<<","<<val._first_name<<"("<<val._nationality<<") Points: "<<val._points<<endl;
+            out<<val._last_name<<","<<val._first_name<<"("<<val._nationality<<") Points: "<<val._points<<std::endl;
             return out;
 
         }
