@@ -28,6 +28,7 @@ public:
   template<typename T>
   void enter_round1(int num_of_matches,int points,list<player>& this_winners,T &tournament);
   void see_players(){players.print();}
+  void print_tournament(int, const string&);
 }; 
 /*void ATP::enter500(){
 string name;
@@ -271,6 +272,47 @@ void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,
 		}
   }
 }
+
+void ATP::print_tournament(int points, const string& name)
+{
+	if(points == 250)
+	{
+		master250 name;
+		int i = master_250.find(name);
+		if(i != -1)
+			cout<< master_250[i] <<endl;
+		else
+			cout<<"You have requested to print tournament that does not exist. Please recheck your spell, and try again."<<endl;
+	}
+	else if(points == 500)
+	{
+		master500 name;
+		int i = master_500.find(name);
+		if(i != -1)
+			cout<< master_500[i] <<endl;
+		else
+			cout<<"You have requested to print tournament that does not exist. Please recheck your spell, and try again."<<endl;
+	}
+	else if(points == 1000)
+	{
+		master1000 name;
+		int i = master_1000.find(name);
+		if(i != -1)
+			cout<< master_1000[i] <<endl;
+		else
+			cout<<"You have requested to print tournament that does not exist. Please recheck your spell, and try again."<<endl;
+	}
+	else if(points == 2000)
+	{
+		grand_slam name;
+		int i = grandSlam.find(name);
+		if(i != -1)
+			cout<< grandSlam[i] <<endl;
+		else
+			cout<<"You have requested to print tournament that does not exist. Please recheck your spell, and try again."<<endl;
+	}
+}
+
 
 
 #endif
