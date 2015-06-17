@@ -20,14 +20,20 @@ class master250{
 		master250(string name):tournament_name{name}{};
 		~master250() = default;
 		void push_match(const Match& new_match){matches.addToEnd(new_match);}
-		
-		friend ostream& operator<<(ostream& out,const list<Match>& matches )
+		bool operator==(const master250&);
+		friend ostream& operator<<(ostream& out,const master250& tour )
 		{
-        		for(int i=0; i<matches.listSize(); i++)
-	            	{	out<<matches[i]<<endl;
-	            		return out;
+        		for(int i=0; i<tour.matches.listSize(); i++)
+	            	{	out<<tour.matches[i]<<endl;
+	            		
 	            	}
-		  	
+		  return out;	
 		} 
 };
+
+bool master250::operator==(const master250& drugi)
+{
+	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+}
 #endif
+
