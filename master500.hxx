@@ -28,9 +28,9 @@ class master500{
 	
 };
 
-bool master500::operator==(const master500& drugi)
+bool master500::operator==(const master500& tour)
 {
-	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+	return tournament_name==tour.tournament_name && rating==tour.rating;
 }
 
 
