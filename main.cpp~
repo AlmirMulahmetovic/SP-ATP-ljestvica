@@ -1,5 +1,0 @@
-#include "master500.hxx"
-
-int main(){
-return 0;
-}
