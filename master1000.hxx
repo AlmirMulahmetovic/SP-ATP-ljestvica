@@ -18,8 +18,8 @@ class master1000
 		master1000(const string& name) : tournament_name(name) {}
 		~master1000() = default;
 		void push_match(const Match& new_match){matches.addToEnd(new_match);}
-		bool operator==(const master500&);
-		friend ostream& operator<<(ostream& out,const master500& tour )
+		bool operator==(const master1000&);
+		friend ostream& operator<<(ostream& out,const master1000& tour )
 	{
         	for(int i=0; i<tour.matches.listSize(); i++)
             	{	out<<tour.matches[i]<<endl;
@@ -30,7 +30,7 @@ class master1000
 	
 };
 
-bool master500::operator==(const master500& drugi)
+bool master1000::operator==(const master1000& drugi)
 {
 	return tournament_name==drugi.tournament_name && rating==drugi.rating;
 }
