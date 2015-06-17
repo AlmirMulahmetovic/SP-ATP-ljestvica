@@ -15,15 +15,20 @@ class grand_slam{
 		grand_slam(std::string n): tournament_name(n){}
 		~grand_slam(){}
 		void push_match(const Match& new_match){matches.addToEnd(new_match);}
-		
-		friend ostream& operator<<(ostream& out,const list<Match>& matches )
+		bool operator==(const grand_slam&)const;
+		friend ostream& operator<<(ostream& out,const grand_slam& tour )
 		{
-	        	for(int i=0; i<matches.listSize(); i++)
-	            	{	out<<matches[i]<<endl;
-	            		return out;
+	        	for(int i=0; i<tour.matches.listSize(); i++)
+	            	{	out<<tour.matches[i]<<endl;
+	            		
 	            	}
-		  	
+		 return out; 	
 		} 
 };
+
+bool grand_slam::operator==(const grand_slam& drugi)const
+{
+	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+}
 
 #endif
