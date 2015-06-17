@@ -26,9 +26,9 @@ class grand_slam{
 		} 
 };
 
-bool grand_slam::operator==(const grand_slam& drugi)const
+bool grand_slam::operator==(const grand_slam& tour)const
 {
-	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+	return tournament_name==tour.tournament_name && rating==tour.rating;
 }
 
 #endif
