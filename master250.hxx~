@@ -21,7 +21,7 @@ class master250{
 		~master250() = default;
 		void push_match(const Match& new_match){matches.addToEnd(new_match);}
 		bool operator==(const master250&);
-		friend ostream& operator<<(ostream& out,const master250& tour )
+		friend ostream& operator<<(ostream& out,const master250& matches )
 		{
         		for(int i=0; i<tour.matches.listSize(); i++)
 	            	{	out<<tour.matches[i]<<endl;
