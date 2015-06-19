@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "match.h"
 #include <iostream>
+#include <fstream>
 #include "master250.hxx"
 #include "master500.hxx"
 #include "master1000.hxx"
@@ -32,6 +33,7 @@ public:
   void enter_round1(int num_of_matches,int points,list<player>& this_winners,T &tournament);
   void see_players(){players.print();}
   void print_tournament(int, const string&);
+  void print_to_file();
 }; 
 void ATP::enter500(){
 string name;
@@ -328,5 +330,19 @@ template<typename F>
 void ATP::mergeSort(F const& function){
 	merge_sort(players, players.listSize(), function);
 }
+void print_to_file(){
+	std::string file_name = "atp_list.txt";
+	std::ofstream fs(file_name.c_str());
+	int n = players.listSize();
+	for(int i = 0; i < n; ++i){
+		fs << i+1 << ". " << players[i].Get_points() << " " players[i].Get_last_name() << " ";
+		fs << players[i].Get_first_name() << " " << players[i].Get_nationality() << std::endl;
+	}
+}
+
+
+
+
+
 
 #endif

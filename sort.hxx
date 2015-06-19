@@ -55,7 +55,7 @@ void merge_sort(list<player>& List, int size, F const & function){
 	merge(left, right, List, middle, size-middle, function);
 }
 bool byPoints(player const & a, player const & b) {
-	return a.Get_points() < b.Get_points();
+	return a.Get_points() > b.Get_points();
 }
 bool byName(player const & a, player const & b) {
 	return a.Get_last_name() < b.Get_last_name();
