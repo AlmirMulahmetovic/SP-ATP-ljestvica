@@ -31,7 +31,7 @@ public:
   void enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,T &tournament);
   template<typename T>
   void enter_round1(int num_of_matches,int points,list<player>& this_winners,T &tournament);
-  void see_players(){players.print();}
+  void see_players();
   void print_tournament(int, const string&);
   void store_players(const string& file_name);
   void insert_player(const player&);
@@ -39,7 +39,10 @@ public:
   void ATP::insert_player(const player& p){
   players.addToEnd(p);
   }
-
+  void see_players(){
+  	mergeSort(byPoints);
+  	players.print();
+  }
 
 void ATP::enter500(){
 string name;
@@ -337,6 +340,7 @@ void ATP::mergeSort(F const& function){
 	merge_sort(players, players.listSize(), function);
 }
   void ATP::store_players(const string& file_name){
+  	mergeSort(byPoints);
 	ofstream myfile (file_name);
 	if(myfile.is_open()){
 		for(int i=0;i<players.listSize();i++){
