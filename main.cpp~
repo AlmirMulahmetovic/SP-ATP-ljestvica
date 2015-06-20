@@ -28,7 +28,7 @@ void load_players(ATP& table,const string & file_name){
 	myfile.close();
 	}
 
-  void load_tournament_names(list<string>& names){
+  void load_tournament_names(list<string> names){
   string file_name="tournament_names.txt";
   ifstream fs(file_name.c_str());
   if(!fs) {

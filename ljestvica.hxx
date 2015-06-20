@@ -12,6 +12,11 @@
 #include "sort.hxx"
 using namespace std;
 
+struct data{
+	int rate;
+	string name;
+	};
+
 class ATP{
 private: 
   
@@ -35,12 +40,110 @@ public:
   void print_tournament(int, const string&);
   void store_players(const string& file_name);
   void insert_player(const player&);
+  void store_tournaments(const list<data>& names);
+  void load_tournaments(list<string> names);
 }; 
+ void ATP::load_tournaments(list<string> names){
+ for(int i=0;i<names.listSize();i++){
+	string file_name=names[i]+".txt";
+	ifstream fs(file_name.c_str());
+	if(!fs) {
+	cout << "File '" << file_name << "' does not exist." << endl;
+	fs.close();
+	return;
+  	}
+	string tour;
+	string 	name1,lastname1,nationality1,name2,lastname2,nationality2,result;
+	int rating;
+	fs>>tour;
+	fs>>rating;
+	if(rating==250){
+		master250 tournament(tour);
+		while(fs>>name1 && fs>>lastname1 && fs>>nationality1 && fs>>name2 && fs>>lastname2 && fs>>nationality2 && fs>>result){
+		player first,second;
+		first.Set_player(name1,lastname1,nationality1,0);  
+		second.Set_player(name2,lastname2,nationality2,0);
+		Match a;
+		a.Set_Match(first,second,result);
+		tournament.push_match(a);
+		}
+		master_250.addToEnd(tournament);
+	}
+	else if(rating==500){
+		master500 tournament(tour);
+		while(fs>>name1 && fs>>lastname1 && fs>>nationality1 && fs>>name2 && fs>>lastname2 && fs>>nationality2 && fs>>result){
+		player first,second;
+		first.Set_player(name1,lastname1,nationality1,0);  
+		second.Set_player(name2,lastname2,nationality2,0);
+		Match a;
+		a.Set_Match(first,second,result);
+		tournament.push_match(a);
+		}
+		master_500.addToEnd(tournament);
+	}
+	else if(rating==1000){
+		master1000 tournament(tour);
+		while(fs>>name1 && fs>>lastname1 && fs>>nationality1 && fs>>name2 && fs>>lastname2 && fs>>nationality2 && fs>>result){
+		player first,second;
+		first.Set_player(name1,lastname1,nationality1,0);  
+		second.Set_player(name2,lastname2,nationality2,0);
+		Match a;
+		a.Set_Match(first,second,result);
+		tournament.push_match(a);
+		}
+		master_1000.addToEnd(tournament);
+	}
+	else {
+		grand_slam tournament(tour);
+		while(fs>>name1 && fs>>lastname1 && fs>>nationality1 && fs>>name2 && fs>>lastname2 && fs>>nationality2 && fs>>result){
+		player first,second;
+		first.Set_player(name1,lastname1,nationality1,0);  
+		second.Set_player(name2,lastname2,nationality2,0);
+		Match a;
+		a.Set_Match(first,second,result);
+		tournament.push_match(a);
+		}
+	
+		grandSlam.addToEnd(tournament);
+		}
+	}
+}
+
+
+  void ATP::store_tournaments(const list<data>& names){
+	for(int i=0;i<names.listSize();i++){
+		int rating=names[i].rate;
+		
+		if(rating==250){
+			master250 tour(names[i].name);
+			int j=master_250.find(tour);
+			master_250[j].store_master250();
+		}
+		else if(rating==500){
+			master500 tour(names[i].name);
+			int j=master_500.find(tour);
+			master_500[j].store_master500();
+		}
+		else if(rating==1000){
+			master1000 tour(names[i].name);
+			int j=master_1000.find(tour);
+			master_1000[j].store_master1000();
+		}	
+		else{
+			grand_slam tour(names[i].name);
+			int j=grandSlam.find(tour);
+			grandSlam[j].store_gslam();
+			}
+		}
+ 
+ }	
+	
   void ATP::insert_player(const player& p){
   players.addToEnd(p);
   }
-  void see_players(){
-  	mergeSort(byPoints);
+  
+  void ATP::see_players(){
+  	
   	players.print();
   }
 
@@ -335,10 +438,10 @@ void ATP::print_tournament(int points, const string& name)
 	}
 }
 
-template<typename F>
-void ATP::mergeSort(F const& function){
+  template<typename F>
+  void ATP::mergeSort(F const& function){
 	merge_sort(players, players.listSize(), function);
-}
+  }
   void ATP::store_players(const string& file_name){
   	mergeSort(byPoints);
 	ofstream myfile (file_name);

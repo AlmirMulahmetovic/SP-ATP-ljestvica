@@ -24,8 +24,23 @@ class master500{
             	}
 		return out;  	
 	}
+  void store_master500();
 	
 };
+  void master500::store_master500(){
+		string file_name=tournament_name+".txt";
+		ofstream myfile (file_name);
+		if(myfile.is_open()){
+			myfile<<tournament_name<<' '<<rating<<'\n';
+			for(int i=0;i<matches.listSize();i++){
+			myfile<<matches[i].Get_first_player().Get_first_name()<<' '<<matches[i].Get_first_player().Get_last_name()<<' '<<matches[i].Get_first_player().Get_nationality()<<' '<<matches[i].Get_second_player().Get_first_name()<<' '<<matches[i].Get_second_player().Get_last_name()<<' '<<matches[i].Get_second_player().Get_nationality()<<' '<<matches[i].Get_result()<<'\n';
+			}
+  			myfile.close();
+		}
+		else
+		cout << "File can not be open.";
+  }
+
 bool master500::operator==(const master500& drugi){
 	return tournament_name==drugi.tournament_name && rating==drugi.rating;
  }

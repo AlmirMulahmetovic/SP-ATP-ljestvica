@@ -13,7 +13,6 @@ class grand_slam{
 	public:
 		grand_slam() = default;
 		grand_slam(std::string n): tournament_name(n){}
-		~grand_slam(){}
 		void push_match(const Match& new_match){matches.addToEnd(new_match);}
 		bool operator==(const grand_slam&)const;
 		friend ostream& operator<<(ostream& out,const grand_slam& tour )
@@ -24,7 +23,24 @@ class grand_slam{
 	            	}
 		 return out; 	
 		} 
+		void store_gslam();
+		
+		
 };
+  void grand_slam::store_gslam(){
+		string file_name=tournament_name+".txt";
+		ofstream myfile (file_name);
+		if(myfile.is_open()){
+			myfile<<tournament_name<<' '<<rating<<'\n';
+			for(int i=0;i<matches.listSize();i++){
+			myfile<<matches[i].Get_first_player().Get_first_name()<<' '<<matches[i].Get_first_player().Get_last_name()<<' '<<matches[i].Get_first_player().Get_nationality()<<' '<<matches[i].Get_second_player().Get_first_name()<<' '<<matches[i].Get_second_player().Get_last_name()<<' '<<matches[i].Get_second_player().Get_nationality()<<' '<<matches[i].Get_result()<<'\n';
+			}
+  			myfile.close();
+		}
+		else
+		cout << "File can not be open.";
+  }
+
 bool grand_slam::operator==(const grand_slam& drugi)const{
 	return tournament_name==drugi.tournament_name && rating==drugi.rating;
 }
