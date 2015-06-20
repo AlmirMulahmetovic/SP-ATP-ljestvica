@@ -36,11 +36,6 @@ public:
   void store_players(const string& file_name);
   void insert_player(const player&);
 }; 
-  void ATP::insert_player(const player& p){
-  players.addToEnd(p);
-  }
-
-
 void ATP::enter500(){
 string name;
   cout<<"Please enter tournament name."<<endl;
