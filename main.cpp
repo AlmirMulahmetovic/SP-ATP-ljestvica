@@ -17,6 +17,7 @@ void load_players(ATP& table,const string & file_name){
 	a.Set_player(name,lastname,nationality,points);
 	table.insert_player(a);
 	}
+ table.mergeSort(byName);
  fs.close();
  }
 
