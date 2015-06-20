@@ -1,4 +1,0 @@
-#include"ljestvica.hxx"
-int main(){
-return 0;
-}
