@@ -44,6 +44,7 @@ void load_players(ATP& table,const string & file_name){
 
 
 int main(){
+	bool change=false;
 	list<string> all_tournaments;
 	all_tournaments.print();
 	list<data> edit_tournaments;
@@ -96,15 +97,19 @@ int main(){
 			k.name=a;
 			edit_tournaments.addToEnd(k);
 			all_tournaments.addToEnd(a);
+			change=true;
 			}
 	}
 	else if(i==4)
 	break;
 	else
 	cout<<"Wrong choise"<<endl;
-}
-table.store_players("players.txt");
-table.store_tournaments(edit_tournaments);
-store_tournament_names(all_tournaments);
-return 0;				
-}
+	cin.clear();
+ }
+ if(change){
+ 	table.store_players("players.txt");
+ 	table.store_tournaments(edit_tournaments);
+ 	store_tournament_names(all_tournaments);
+	}
+ return 0;				
+ }
