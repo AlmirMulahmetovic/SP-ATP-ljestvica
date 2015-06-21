@@ -21,7 +21,7 @@ class Match
 
  	friend std::ostream& operator<<(std::ostream& out,const Match& val )
         {
-           out<< val.Get_first_player().Get_first_name() << " " << val.Get_first_player().Get_last_name() << "(" << val.Get_first_player().Get_nationality() << ")" << " - " << val.Get_second_player().Get_first_name() << val.Get_second_player().Get_last_name() << "(" << val.Get_second_player().Get_nationality() << ")" << val.Get_result() <<endl;
+           out<< val.Get_first_player().Get_first_name() << " " << val.Get_first_player().Get_last_name() << "(" << val.Get_first_player().Get_nationality() << ")" << " - " << val.Get_second_player().Get_first_name() << val.Get_second_player().Get_last_name() << "(" << val.Get_second_player().Get_nationality() << ")" << val.Get_result() <<std::endl;
         	return out;
         }
         /*
