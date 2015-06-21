@@ -41,7 +41,7 @@ class grand_slam{
 		cout << "File can not be open.";
   }
 
-bool grand_slam::operator==(const grand_slam& drugi)const{
-	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+bool grand_slam::operator==(const grand_slam& tour)const{
+	return tournament_name==tour.tournament_name && rating==tour.rating;
 }
 #endif
