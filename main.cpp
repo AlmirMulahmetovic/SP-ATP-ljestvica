@@ -6,7 +6,6 @@ using namespace std;
 void load_players(ATP& table,const string & file_name){
  ifstream fs(file_name.c_str());
   if(!fs) {
-	cout << "File '" << file_name << "' does not exist." << endl;
 	fs.close();
 	return;
   }
@@ -32,7 +31,6 @@ void load_players(ATP& table,const string & file_name){
   string file_name="tournament_names.txt";
   ifstream fs(file_name.c_str());
   if(!fs) {
-	cout << "File '" << file_name << "' does not exist." << endl;
 	fs.close();
 	return;
   }
@@ -80,13 +78,13 @@ int main(){
 		bool done=true;
 	
 		if(j==250)
-			table.enter250();
+			table.enter250(a);
 		else if(j==500)
-			table.enter500();
+			table.enter500(a);
 		else if(j==1000)
-			table.enter1000();
+			table.enter1000(a);
 		else if(j==2000)
-			table.enter_gslam();
+			table.enter_gslam(a);
 		else{
 			cout<<"Wrong rating"<<endl;
 			done=false;

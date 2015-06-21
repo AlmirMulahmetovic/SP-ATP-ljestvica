@@ -28,10 +28,10 @@ private:
 public:
   template<typename F>
   void mergeSort(F const&);
-  void enter250();
-  void enter500();
-  void enter1000();
-  void enter_gslam();
+  void enter250(const string& name);
+  void enter500(const string& name);
+  void enter1000(const string& name);
+  void enter_gslam(const string& name);
   template<typename T>
   void enter_round(int num_of_matches,int points,list<player>& winners,list<player>& this_winners,T &tournament);
   template<typename T>
@@ -147,11 +147,67 @@ public:
   	players.print();
   }
 
-void ATP::enter500(){
+void ATP::enter250(const string& name){
+			master250 tournament(name);
+		  int i = master_250.find(tournament);
+		  if(i != -1)
+			cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
+		  else
+		  {	list<player> winners1(1);
+			enter_round1(1,125,winners1,tournament);
+			player winner=winners1[0];
+				bool found=false;	
+				for(int i=0;i<players.listSize();i++){
+					if(winner==players[i]){
+						players[i].increase_points(250);
+						found=true;
+						break;
+					}
+				}
+				if(!found){
+					winner.increase_points(250);
+					players.addToEnd(winner);
+					}
+				master_250.addToEnd(tournament);
+				
+		}
+}
+void ATP::enter1000(const string& name){
 		
-		  string name;
-		  cout<<"Please enter tournament name."<<endl;
-	      cin>>name;
+		  
+		   master1000 tournament(name);
+		  int i = master_1000.find(tournament);
+		  if(i != -1)
+			cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
+		  else
+		  {
+		
+				list<player> winners4(4);
+				enter_round1(4,125,winners4,tournament);
+				list<player> winners2(2);
+				enter_round(2,250,winners4,winners2,tournament);
+				list<player> winners1(1);
+				enter_round(1,500,winners2,winners1,tournament);
+				player winner=winners1[0];
+				bool found=false;	
+				for(int i=0;i<players.listSize();i++){
+					if(winner==players[i]){
+						players[i].increase_points(1000);
+						found=true;
+						break;
+					}
+				}
+				if(!found){
+					winner.increase_points(1000);
+					players.addToEnd(winner);
+					}
+				master_1000.addToEnd(tournament);
+				
+		}
+}
+
+void ATP::enter500(const string& name){
+		
 		   master500 tournament(name);
 		  int i = master_500.find(tournament);
 		  if(i != -1)
@@ -184,7 +240,7 @@ void ATP::enter500(){
 		}
 }
 
- void ATP::enter250()
+ /*void ATP::enter250()
  {
 		  string name;
 		  cout<<"Please enter tournament name."<<endl;
@@ -227,7 +283,7 @@ void ATP::enter500(){
 		}
 } 
 
-/*void ATP::enter500(){
+  void ATP::enter500(){
   string name;
   cout<<"Please enter tournament name."<<endl;
   cin>>name;
@@ -257,7 +313,7 @@ void ATP::enter500(){
 	winner.increase_points(500);
 	players.addToEnd(winner);
 	}
-}*/
+}
 
  void ATP::enter1000(){
   string name;
@@ -298,12 +354,9 @@ void ATP::enter500(){
 		}
   
 }
-}
+}*/
 
-void ATP::enter_gslam(){
-	string name;
-	cout<<"Please enter tournament name."<<endl;
-	cin>>name;
+void ATP::enter_gslam(const string& name){
 	grand_slam tournament(name);
 	int i = grandSlam.find(tournament);
 	if(i != -1)
@@ -372,9 +425,9 @@ void ATP::enter_round(int num_of_matches,int points,list<player>& winners,list<p
 	tournament.push_match(a);	
 	this_winners.addToEnd(winner);
 	bool found=false;	
-		for(int i=0;i<players.listSize();i++){
-			if(loser==players[i]){
-				players[i].increase_points(points);
+		for(int l=0;l<players.listSize();l++){
+			if(loser==players[l]){
+				players[l].increase_points(points);
 				found=true;
 				break;
 			}
@@ -398,8 +451,9 @@ void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,
   cout<<"Enter the first match of round"<<endl;
   string name1,name2,lastname1,lastname2,natonality1,natonality2,result;
   player first,second;  
-  for(int i=num_of_matches;i>0;i--){
- 	cin>>name1>>lastname1>>natonality1>>name2>>lastname2>>natonality2>>result;
+  for(int i=0;i<num_of_matches;i++){
+	cin>>name1>>lastname1>>natonality1>>name2>>lastname2>>natonality2>>result;
+
 	first.Set_player(name1,lastname1,natonality1,0);  
 	second.Set_player(name2,lastname2,natonality2,0);
 	Match a;
@@ -409,9 +463,9 @@ void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,
 	tournament.push_match(a);	
 	this_winners.addToEnd(winner);
 	bool found=false;	
-		for(int i=0;i<players.listSize();i++){
-			if(loser==players[i]){
-				players[i].increase_points(points);
+		for(int j=0;j<players.listSize();j++){
+			if(loser==players[j]){
+				players[j].increase_points(points);
 				found=true;
 				break;
 			}
@@ -422,6 +476,7 @@ void ATP::enter_round1(int num_of_matches,int points,list<player>& this_winners,
 		}
   	if(i!=num_of_matches-1)
 	cout<<"Please enter next match od round."<<endl;
+	cin.clear();
   }
 }
 
