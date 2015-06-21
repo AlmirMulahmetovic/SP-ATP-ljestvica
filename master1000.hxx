@@ -43,8 +43,8 @@ class master1000
 		else
 		cout << "File can not be open.";
   }
-bool master1000::operator==(const master1000& drugi){
-	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+bool master1000::operator==(const master1000& tour){
+	return tournament_name==tour.tournament_name && rating==tour.rating;
 }
 
 #endif
