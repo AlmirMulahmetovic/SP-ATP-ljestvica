@@ -148,68 +148,82 @@ public:
   }
 
 void ATP::enter500(){
-string name;
-  cout<<"Please enter tournament name."<<endl;
-  cin>>name;
-  master500 tournament(name);
-  list<player> winners2(2);
-  player first,second;
-  enter_round1(2,200,winners2,tournament);
-  winners2.print();
-  list<player> winners1(1);
-  enter_round(1,360,winners2,winners1,tournament);
-  player winner=winners1[0];
-  bool found=false;	
-	for(int i=0;i<players.listSize();i++){
-		if(winner==players[i]){
-			players[i].increase_points(500);
-			found=true;
-			break;
-			}
+		
+		  string name;
+		  cout<<"Please enter tournament name."<<endl;
+	      cin>>name;
+		   master500 tournament(name);
+		  int i = master_500.find(tournament);
+		  if(i != -1)
+			cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
+		  else
+		  {
+		
+				list<player> winners2(2);
+				player first,second;
+				enter_round1(2,200,winners2,tournament);
+				winners2.print();
+				list<player> winners1(1);
+				enter_round(1,360,winners2,winners1,tournament);
+				player winner=winners1[0];
+				bool found=false;	
+				for(int i=0;i<players.listSize();i++){
+					if(winner==players[i]){
+						players[i].increase_points(500);
+						found=true;
+						break;
+					}
+				}
+				if(!found){
+					winner.increase_points(500);
+					players.addToEnd(winner);
+					}
+				master_500.addToEnd(tournament);
+				cout<<master_500[0]<<endl;
+				cout<<tournament<<endl;
 		}
-	if(!found){
-	winner.increase_points(500);
-	players.addToEnd(winner);
-	}
- 
-  master_500.addToEnd(tournament);
-  cout<<master_500[0]<<endl;
-  cout<<tournament<<endl;
 }
 
  void ATP::enter250()
  {
 		  string name;
 		  cout<<"Please enter tournament name."<<endl;
-		  cin>>name;
+	      cin>>name;
 		  master250 tournament(name);
-		  list<player> winners16(16);
-		  string name1,lastname1,name2,lastname2,result;
-		  player first,second;
-		  enter_round1(16,5,winners16,tournament);
-		  list<player> winners8(8);
-		  enter_round(8,20,winners16,winners8,tournament);
-		  list<player> winners4(4);
-		  enter_round(4,45,winners8,winners4,tournament);
-		  list<player> winners2(2);
-		  enter_round(2,90,winners4,winners2,tournament);
-		  list<player> winners1(1);
-		  enter_round(1,150,winners2,winners1,tournament);
-		  player winner=winners1[0];
-		  bool found=false;	
-		  for(int i=0;i<players.listSize();i++)
+		  int i = master_250.find(tournament);
+		  if(i != -1)
+			cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
+		  else
 		  {
-				if(winner==players[i])
-				{
-					players[i].increase_points(250);
-					found=true;
-					break;
-				}
-		  }
-		if(!found)
-		{
-				winner.increase_points(250);
-				players.addToEnd(winner);
+		  
+				list<player> winners16(16);
+				string name1,lastname1,name2,lastname2,result;
+				player first,second;
+			  enter_round1(16,5,winners16,tournament);
+			  list<player> winners8(8);
+			  enter_round(8,20,winners16,winners8,tournament);
+			  list<player> winners4(4);
+			  enter_round(4,45,winners8,winners4,tournament);
+			  list<player> winners2(2);
+			  enter_round(2,90,winners4,winners2,tournament);
+			  list<player> winners1(1);
+			  enter_round(1,150,winners2,winners1,tournament);
+			  player winner=winners1[0];
+			  bool found=false;	
+			  for(int i=0;i<players.listSize();i++)
+			  {
+					if(winner==players[i])
+					{
+						players[i].increase_points(250);
+						found=true;
+						break;
+					}
+			  }
+			if(!found)
+			{
+					winner.increase_points(250);
+					players.addToEnd(winner);
+			}
 		}
 } 
 
@@ -250,7 +264,7 @@ string name;
   cout<<"Please enter tournament name."<<endl;
   cin>>name;
   master1000 tournament(name);
-  int i = master_1000.find(tournament(name));
+  int i = master_1000.find(tournament);
   if(i != -1)
   	cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
   else
@@ -291,7 +305,7 @@ void ATP::enter_gslam(){
 	cout<<"Please enter tournament name."<<endl;
 	cin>>name;
 	grand_slam tournament(name);
-	int i = grandSlam.find(tournament(name));
+	int i = grandSlam.find(tournament);
 	if(i != -1)
 		cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
 	else
