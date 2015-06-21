@@ -42,7 +42,7 @@ class master250{
 		cout << "File can not be open.";
   }
 
-bool master250::operator==(const master250& drugi){
-	return tournament_name==drugi.tournament_name && rating==drugi.rating;
+bool master250::operator==(const master250& tour){
+	return tournament_name==tour.tournament_name && rating==tour.rating;
 }
 #endif
