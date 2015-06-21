@@ -250,68 +250,81 @@ string name;
   cout<<"Please enter tournament name."<<endl;
   cin>>name;
   master1000 tournament(name);
-  string name1,lastname1,name2,lastname2,result;
-  player first,second;
-  list<player> winners32(32);
-  enter_round1(32,25,winners32,tournament);
-  list<player> winners16(16);
-  enter_round(16,45,winners32,winners16,tournament);
-  list<player> winners8(8);
-  enter_round(8,90,winners16,winners8,tournament);
-  list<player> winners4(4);
-  enter_round(4,180,winners8,winners4,tournament);
-  list<player> winners2(2);
-  enter_round(2,360,winners4,winners2,tournament);
-  list<player> winners1(1);
-  enter_round(1,600,winners2,winners1,tournament);
-  player winner=winners1[0];
-  bool found=false;	
-	for(int i=0;i<players.listSize();i++){
-		if(winner==players[i]){
-			players[i].increase_points(1000);
-			found=true;
-			break;
+  int i = master_1000.find(tournament(name));
+  if(i != -1)
+  	cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
+  else
+  {
+	  string name1,lastname1,name2,lastname2,result;
+	  player first,second;
+	  list<player> winners32(32);
+	  enter_round1(32,25,winners32,tournament);
+	  list<player> winners16(16);
+	  enter_round(16,45,winners32,winners16,tournament);
+	  list<player> winners8(8);
+	  enter_round(8,90,winners16,winners8,tournament);
+	  list<player> winners4(4);
+	  enter_round(4,180,winners8,winners4,tournament);
+	  list<player> winners2(2);
+	  enter_round(2,360,winners4,winners2,tournament);
+	  list<player> winners1(1);
+	  enter_round(1,600,winners2,winners1,tournament);
+	  player winner=winners1[0];
+	  bool found=false;	
+		for(int i=0;i<players.listSize();i++){
+			if(winner==players[i]){
+				players[i].increase_points(1000);
+				found=true;
+				break;
+				}
 			}
+		if(!found){
+		winner.increase_points(1000);
+		players.addToEnd(winner);
 		}
-	if(!found){
-	winner.increase_points(1000);
-	players.addToEnd(winner);
-	}
   
 }
+}
+
 void ATP::enter_gslam(){
 	string name;
 	cout<<"Please enter tournament name."<<endl;
 	cin>>name;
 	grand_slam tournament(name);
-	list<player> winners64(64);
-	string name1, lastname1, name2, lastname2, result;
-	player first, second;
-	enter_round1(64, 10, winners64, tournament);
-	list<player> winners32(32);
-	enter_round(32, 45, winners64, winners32, tournament);
-	list<player> winners16(16);
-	enter_round(16, 90, winners32, winners16, tournament);
-	list<player> winners8(8);
-	enter_round(8, 180, winners16, winners8, tournament);
-	list<player> winners4(4);
-	enter_round(4, 360, winners8, winners4, tournament);
-	list<player> winners2(2);
-	enter_round(2, 720, winners4, winners2, tournament);
-	list<player> winners1(1);
-	enter_round(1, 1200, winners2, winners1, tournament);
-	player winner=winners1[0];
-	bool found=false;	
-	for(int i=0;i<players.listSize();i++){
-		if(winner==players[i]){
-			players[i].increase_points(2000);
-			found=true;
-			break;
+	int i = grandSlam.find(tournament(name));
+	if(i != -1)
+		cout<<"This tournament already exists. You cannot make another tournament with the same name."<<endl;
+	else
+	{
+		list<player> winners64(64);
+		string name1, lastname1, name2, lastname2, result;
+		player first, second;
+		enter_round1(64, 10, winners64, tournament);
+		list<player> winners32(32);
+		enter_round(32, 45, winners64, winners32, tournament);
+		list<player> winners16(16);
+		enter_round(16, 90, winners32, winners16, tournament);
+		list<player> winners8(8);
+		enter_round(8, 180, winners16, winners8, tournament);
+		list<player> winners4(4);
+		enter_round(4, 360, winners8, winners4, tournament);
+		list<player> winners2(2);
+		enter_round(2, 720, winners4, winners2, tournament);
+		list<player> winners1(1);
+		enter_round(1, 1200, winners2, winners1, tournament);
+		player winner=winners1[0];
+		bool found=false;	
+		for(int i=0;i<players.listSize();i++){
+			if(winner==players[i]){
+				players[i].increase_points(2000);
+				found=true;
+				break;
+			}
 		}
-	}
-	if(!found){
-		winner.increase_points(2000);
-		players.addToEnd(winner);
+		if(!found){
+			winner.increase_points(2000);
+			players.addToEnd(winner);
+		}
 	}
 }
 template<typename T>
