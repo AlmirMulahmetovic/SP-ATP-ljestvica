@@ -21,10 +21,10 @@ class ATP{
 private: 
   
   list<player> players;
-  list<master250> master_250;
-  list<master500> master_500;
-  list<master1000> master_1000;
-  list<grand_slam> grandSlam;
+  list<master250> master_250{39};
+  list<master500> master_500{13};
+  list<master1000> master_1000{9};
+  list<grand_slam> grandSlam{4};
 public:
   template<typename F>
   void mergeSort(F const&);
@@ -42,7 +42,12 @@ public:
   void insert_player(const player&);
   void store_tournaments(const list<data>& names);
   void load_tournaments(list<string> names);
+  bool is_finished()const;
 }; 
+ bool ATP::is_finished()const{
+ return (master_250.full() && master_500.full() && master_1000.full() && grandSlam.full());
+ }
+ 
  void ATP::load_tournaments(list<string> names){
  for(int i=0;i<names.listSize();i++){
 	string file_name=names[i]+".txt";
@@ -218,7 +223,6 @@ void ATP::enter500(const string& name){
 				list<player> winners2(2);
 				player first,second;
 				enter_round1(2,200,winners2,tournament);
-				winners2.print();
 				list<player> winners1(1);
 				enter_round(1,360,winners2,winners1,tournament);
 				player winner=winners1[0];
@@ -234,9 +238,9 @@ void ATP::enter500(const string& name){
 					winner.increase_points(500);
 					players.addToEnd(winner);
 					}
-				master_500.addToEnd(tournament);
+				
 				cout<<master_500[0]<<endl;
-				cout<<tournament<<endl;
+				
 		}
 }
 
