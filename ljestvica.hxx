@@ -239,7 +239,7 @@ void ATP::enter500(const string& name){
 					players.addToEnd(winner);
 					}
 				
-				cout<<master_500[0]<<endl;
+				master_500.addToEnd(tournament);
 				
 		}
 }
